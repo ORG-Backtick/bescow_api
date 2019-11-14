@@ -1,0 +1,13 @@
+{
+  "name": "bescow_api",
+  "version": 2,
+  "builds": [{ "src": "index.js", "use": "@now/node"}],
+  "routes": [{ "src": "/(.*)", "dest": "/index.js" }],
+  "env": {
+    "DB_USER": "@bescow-db-user",
+    "DB_PASSWORD": "@bescow-db-password",
+    "DB_HOST": "@bescow-db-host",
+    "DB_NAME": "@bescow-db-name",
+    "AUTH_JWT_SECRET": "@bescow-auth-jwt-secret"
+  }
+}

@@ -10,7 +10,7 @@ const coworkingApi = (app) => {
 
   const coworkingService = new CoworkingService();
 
-  router.get('/', passport.authenticate('jwt', {session: false}), async (req, res, next) => {
+  router.get('/', async (req, res, next) => {
     try {
       const coworkingList = await coworkingService.getCoworkingAll();
       res.status(200).json({
@@ -22,13 +22,13 @@ const coworkingApi = (app) => {
     }
   });
 
-  router.get('/:cowId', passport.authenticate('jwt', {session: false}), async (req, res, next) => {
+  router.get('/:cowId', async (req, res, next) => {
     const { cowId } = req.params;
 
     try {
       const cow = await coworkingService.getCoworkingById({ cowId });
       res.status(200).json({
-        date: cow,
+        data: cow,
         message: 'Cow retrived'
       });
     } catch (error) {
