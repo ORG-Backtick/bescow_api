@@ -5,7 +5,7 @@ const coworkingApi = require('./routes/coworkingApi');
 const authApi = require('./routes/auth');
 
 const app = express();
-app.use(cors());
+app.use(cors('*'));
 app.use(express.json());
 authApi(app);
 coworkingApi(app);
