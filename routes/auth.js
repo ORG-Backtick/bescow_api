@@ -44,7 +44,6 @@ const authApi = (app) => {
             }
           });
         });
-
       } catch (error) {
         next(error);
       }
@@ -67,14 +66,11 @@ const authApi = (app) => {
   });
 
   router.post('/sign-provider', async (req, res, next) => {
-      console.log('sign-provider')
-      console.log(req)
       const { body } = req;
-
       const { ...user } = body;
 
       try {
-        const queriedUser = await usersService.getOrCreateUser({ user });
+        const queriedUser = await usersService.getOrCreateUser( user );
 
         const { _id: id, firstName, lastName, email, isAdmin } = queriedUser;
         const payload = {
