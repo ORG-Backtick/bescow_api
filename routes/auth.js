@@ -67,37 +67,33 @@ const authApi = (app) => {
   });
 
   router.post('/sign-provider', async (req, res, next) => {
+      console.log('sign-provider')
       console.log(req)
       const { body } = req;
 
-      const { apiKeyToken, ...user } = body;
-
-      if (!apiKeyToken) {
-        next(boom.unauthorized('apiKeyToken is required'));
-      }
+      const { ...user } = body;
 
       try {
         const queriedUser = await usersService.getOrCreateUser({ user });
-        const apiKey = await apiKeysService.getApiKey({ token: apiKeyToken });
 
-        if (!apiKey) {
-          next(boom.unauthorized());
-        }
-
-        const { _id: id, name, email } = queriedUser;
-
+        const { _id: id, firstName, lastName, email, isAdmin } = queriedUser;
         const payload = {
           sub: id,
-          name,
+          firstName,
+          lastName,
           email,
-          scopes: apiKey.scopes
+          isAdmin
         };
 
-        const token = jwt.sign(payload, config.authJwtSecret, {
-          expiresIn: '15m'
+        const token = jwt.sign(payload, config.authJwtSecret, { expiresIn: '15m' });
+        return res.status(200).json({
+          token,
+          user: {
+            id,
+            firstName,
+            email
+          }
         });
-
-        return res.status(200).json({ token, user: { id, name, email } });
       } catch (error) {
         next(error);
       }
