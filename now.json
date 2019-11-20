@@ -8,6 +8,8 @@
     "DB_PASSWORD": "@bescow-db-password",
     "DB_HOST": "@bescow-db-host",
     "DB_NAME": "@bescow-db-name",
-    "AUTH_JWT_SECRET": "@bescow-auth-jwt-secret"
+    "AUTH_JWT_SECRET": "@bescow-auth-jwt-secret",
+    "SENDGRID_API_KEY": "@bescow-sengrid-api-key",
+    "EMAIL_BESCOW": "@bescow-email-bescow"
   }
 }

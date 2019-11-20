@@ -8,7 +8,9 @@ const config = {
   dbPassword: process.env.DB_PASSWORD,
   dbHost: process.env.DB_HOST,
   dbName: process.env.DB_NAME,
-  authJwtSecret: process.env.AUTH_JWT_SECRET
+  authJwtSecret: process.env.AUTH_JWT_SECRET,
+  sengridApiKey: process.env.SENDGRID_API_KEY,
+  emailBescow: process.env.EMAIL_BESCOW
 };
 
 module.exports = { config };
