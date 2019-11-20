@@ -44,7 +44,6 @@ const authApi = (app) => {
             }
           });
         });
-
       } catch (error) {
         next(error);
       }
@@ -66,6 +65,36 @@ const authApi = (app) => {
     }
   });
 
+  router.post('/sign-provider', async (req, res, next) => {
+      const { body } = req;
+      const { ...user } = body;
+
+      try {
+        const queriedUser = await usersService.getOrCreateUser( user );
+
+        const { _id: id, firstName, lastName, email, isAdmin } = queriedUser;
+        const payload = {
+          sub: id,
+          firstName,
+          lastName,
+          email,
+          isAdmin
+        };
+
+        const token = jwt.sign(payload, config.authJwtSecret, { expiresIn: '15m' });
+        return res.status(200).json({
+          token,
+          user: {
+            id,
+            firstName,
+            email
+          }
+        });
+      } catch (error) {
+        next(error);
+      }
+    }
+  );
 };
 
 module.exports = authApi;
