@@ -28,7 +28,7 @@ const emailApi = (app) => {
       cc: 'afvalenciab@gmail.com',
       subject: `Reserva en ${emailInfo.place}`,
       html: `<h3>Nueva reserva en ${emailInfo.place}!</h3>
-             <p>El usuario ${emailInfo.emailUser} realizo una resernva en ${emailInfo.place} para ${emailInfo.quantityUser} ${emailInfo.quantityUser > 1 ? 'personas' : 'persona'} del ${emailInfo.checkin} al ${emailInfo.checkout}</p>`
+             <p>El usuario ${emailInfo.emailUser} realizó una resernva en ${emailInfo.place} para ${emailInfo.quantityUser} ${emailInfo.quantityUser > 1 ? 'personas' : 'persona'} del ${emailInfo.checkin} al ${emailInfo.checkout}</p>`
     };
 
     try {
